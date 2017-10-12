@@ -52,14 +52,15 @@ qiime tools import --type 'FeatureData[Taxonomy]' --source-format HeaderlessTSVT
 ```
 
 ### Extract reference reads
-
+```
 qiime feature-classifier extract-reads \
   --i-sequences ref_db.qza \
   --p-f-primer GTGCCAGCMGCCGCGGTAA \
   --p-r-primer GGACTACHVGGGTWTCTAAT \
   --p-trunc-len 100 \
   --o-reads ref-seqs.qza
-  
+```
+
 ### Train the classifier
 ```
 qiime feature-classifier fit-classifier-naive-bayes \
