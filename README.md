@@ -82,6 +82,9 @@ qiime feature-classifier extract-reads \
 ```
 
 ### Train the classifier
+
+With naive-bayes classifier
+
 ```
 qiime feature-classifier fit-classifier-naive-bayes \
   --i-reference-reads ref-seqs.qza \
@@ -89,13 +92,76 @@ qiime feature-classifier fit-classifier-naive-bayes \
   --o-classifier classifier.qza
 ```
   
-### Test the classifier
+Test the classifier
+
 ```
 qiime feature-classifier classify-sklearn \
   --i-classifier classifier.qza \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
+```
 
+With classify-consensus-blast: BLAST+ consensus taxonomy classifier
+https://docs.qiime2.org/2017.9/plugins/available/feature-classifier/classify-consensus-blast/
+
+```
+qiime feature-classifier classify-consensus-blast [OPTIONS]
+```
+
+```
+Usage: qiime feature-classifier classify-consensus-blast [OPTIONS]
+
+  Assign taxonomy to query sequences using BLAST+. Performs BLAST+ local
+  alignment between query and reference_reads, then assigns consensus
+  taxonomy to each query sequence from among maxaccepts top hits,
+  min_consensus of which share that taxonomic assignment.
+
+Options:
+  --i-query PATH                Artifact: FeatureData[Sequence]  [required]
+                                Sequences to classify taxonomically.
+  --i-reference-reads PATH      Artifact: FeatureData[Sequence]  [required]
+                                reference sequences.
+  --i-reference-taxonomy PATH   Artifact: FeatureData[Taxonomy]  [required]
+                                reference taxonomy labels.
+  --p-maxaccepts INTEGER RANGE  [default: 10]
+                                Maximum number of hits to keep
+                                for each query. Must be in range [0,
+                                infinity].
+  --p-perc-identity FLOAT       [default: 0.8]
+                                Reject match if percent
+                                identity to query is lower. Must be in range
+                                [0.0, 1.0].
+  --p-strand [minus|both|plus]  [default: both]
+                                Align against reference
+                                sequences in forward ("plus"), reverse
+                                ("minus"), or both directions ("both").
+  --p-evalue FLOAT              [default: 0.001]
+                                BLAST expectation value (E)
+                                threshold for saving hits.
+  --p-min-consensus FLOAT       [default: 0.51]
+                                Minimum fraction of
+                                assignments must match top hit to be accepted
+                                as consensus assignment. Must be in range
+                                (0.5, 1.0].
+  --p-unassignable-label TEXT   [default: Unassigned]
+  --o-classification PATH       Artifact: FeatureData[Taxonomy] [required if
+                                not passing --output-dir]
+                                Taxonomy
+                                classifications of query sequences.
+  --output-dir DIRECTORY        Output unspecified results to a directory
+  --cmd-config PATH             Use config file for command options
+  --verbose                     Display verbose output to stdout and/or stderr
+                                during execution of this action.  [default:
+                                False]
+  --quiet                       Silence output if execution is successful
+                                (silence is golden).  [default: False]
+  --help                        Show this message and exit.
+```
+
+
+### Make taxonomy.qzv for visualization
+
+```
 qiime metadata tabulate \
   --m-input-file taxonomy.qza \
   --o-visualization taxonomy.qzv
