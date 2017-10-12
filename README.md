@@ -3,8 +3,9 @@
 # QIIME2 for feature (OTU) table & taxonomy
 
 ## TO MAKE CACHED MEMORY FREE:
+'''
 sysctl -w vm.drop_caches=3
-
+'''
 ## TO ACTIVATE QIIME2:
 
 module load miniconda3
