@@ -37,30 +37,17 @@ qiime tools import --type 'FeatureData[Taxonomy]' --source-format HeaderlessTSVT
 
 ### Extract reference reads
 
-qiime feature-classifier extract-reads \
-  --i-sequences ref_db.qza \
-  --p-f-primer GTGCCAGCMGCCGCGGTAA \
-  --p-r-primer GGACTACHVGGGTWTCTAAT \
-  --p-trunc-len 100 \
-  --o-reads ref-seqs.qza
+qiime feature-classifier extract-reads --i-sequences ref_db.qza --p-f-primer GTGCCAGCMGCCGCGGTAA --p-r-primer GGACTACHVGGGTWTCTAAT --p-trunc-len 100 --o-reads ref-seqs.qza
   
 ### Train the classifier
 
-qiime feature-classifier fit-classifier-naive-bayes \
-  --i-reference-reads ref-seqs.qza \
-  --i-reference-taxonomy ref-taxonomy.qza \
-  --o-classifier classifier.qza
+qiime feature-classifier fit-classifier-naive-bayes --i-reference-reads ref-seqs.qza --i-reference-taxonomy ref-taxonomy.qza --o-classifier classifier.qza
   
 ### Test the classifier
 
-qiime feature-classifier classify-sklearn \
-  --i-classifier classifier.qza \
-  --i-reads rep-seqs.qza \
-  --o-classification taxonomy.qza
+qiime feature-classifier classify-sklearn --i-classifier classifier.qza --i-reads rep-seqs.qza --o-classification taxonomy.qza
 
-qiime metadata tabulate \
-  --m-input-file taxonomy.qza \
-  --o-visualization taxonomy.qzv
+qiime metadata tabulate --m-input-file taxonomy.qza --o-visualization taxonomy.qzv
 
 ## export data
 qiime tools export taxonomy.qzv --output-dir test-output-taxonomy
