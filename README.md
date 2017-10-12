@@ -44,11 +44,16 @@ qiime tools export test-rep-seqs.qzv --output-dir test-output-data
 
 ### make .qza file format
 ```
-qiime tools import --type 'FeatureData[Sequence]' --input-path ref_db.fasta --output-path ref_db.qza
-```
+qiime tools import \
+  --type 'FeatureData[Sequence]' \
+  --input-path ref_db.fasta \
+  --output-path ref_db.qza
 
-```
-qiime tools import --type 'FeatureData[Taxonomy]' --source-format HeaderlessTSVTaxonomyFormat --input-path ref_db_taxonomy.txt --output-path ref-taxonomy.qza
+qiime tools import \
+  --type 'FeatureData[Taxonomy]' \
+  --source-format HeaderlessTSVTaxonomyFormat \
+  --input-path ref_db_taxonomy.txt \
+  --output-path ref-taxonomy.qza
 ```
 
 ### Extract reference reads
