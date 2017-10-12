@@ -16,22 +16,37 @@ source activate /srv/sw/qiime2/qiime2-2017.7/
 
 ## make .qza file all paired-end reads
 ```
-qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' --input-path paired_reads/ --source-format CasavaOneEightSingleLanePerSampleDirFmt --output-path paired-end.qza
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path paired_reads_demultiplexed \
+  --source-format CasavaOneEightSingleLanePerSampleDirFmt \
+  --output-path demux-paired-end.qza
 ```
 
 ## make feature-table (OTU-Table)
 ```
-qiime dada2 denoise-paired --i-demultiplexed-seqs paired-end.qza --o-table table.qza --o-representative-sequences rep-seqs.qza --p-trunc-len-f 280 --p-trunc-len-r 280
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs demux-paired-end.qza \
+  --o-table table.qza \
+  --o-representative-sequences rep-seqs.qza \
+  --p-trim-left-f 13 \
+  --p-trim-left-r 13 \
+  --p-trunc-len-f 280 \
+  --p-trunc-len-r 280
 ```
 
 ## make table visualization file
 ```
-qiime feature-table summarize --i-table test-table.qza --o-visualization test-table-seqs.qzv
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv
 ```
 
-## make table sequences file
+## make rep OTU sequences file
 ```
-qiime feature-table tabulate-seqs   --i-data test-rep-seqs.qza   --o-visualization test-rep-seqs.qzv
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
 ```
 
 ## export data
