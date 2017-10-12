@@ -81,7 +81,7 @@ qiime feature-classifier extract-reads \
   --o-reads ref-seqs.qza
 ```
 
-### Train the classifier
+### Train the classifier [Use only one classifier]
 
 With naive-bayes classifier
 
