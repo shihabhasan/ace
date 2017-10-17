@@ -1,5 +1,22 @@
 # ACE Amplicon Pipeline Development
 
+# Quality Control
+
+## FastQC
+```
+fastqc raw_reads/* fastqc_raw_reads/
+```
+
+## MultiQC
+```
+multiqc .
+```
+
+## Cutadapt
+```
+cutadapt -g AAACTYAAAKGAATTGRCGG -o cutadapt/J8231_S85_L001_R1_001.fastq.gz raw_reads/J8231_S85_L001_R1_001.fastq.gz --info-file J8231_S85_L001_R1_001.fastq.gz_cutadapt.txt
+```
+
 # QIIME2 for feature (OTU) table & taxonomy
 
 ## TO MAKE CACHED MEMORY FREE:
