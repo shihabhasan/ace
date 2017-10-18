@@ -2,12 +2,12 @@
 
 # Quality Control
 
-## FastQC
+## FastQC for raw reads
 ```
 fastqc raw_reads/* fastqc_raw_reads/
 ```
 
-## MultiQC
+## MultiQC for raw reads
 ```
 multiqc .
 ```
@@ -45,6 +45,16 @@ trimmomatic PE \
     output_reverse_paired.fq.gz \
     output_reverse_unpaired.fq.gz \
     SLIDINGWINDOW:4:20 MINLEN:250
+```
+
+## FastQC for QC reads
+```
+fastqc qc_reads/* fastqc_qc_reads/
+```
+
+## MultiQC for QC reads
+```
+multiqc .
 ```
 
 # QIIME2 for feature (OTU) table & taxonomy
