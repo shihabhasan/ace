@@ -14,11 +14,22 @@ multiqc .
 
 ## Cutadapt
 ```
-cutadapt -g AAACTYAAAKGAATTGRCGG -o cutadapt/J8231_S85_L001_R1_001.fastq.gz raw_reads/J8231_S85_L001_R1_001.fastq.gz --info-file J8231_S85_L001_R1_001.fastq.gz_cutadapt.txt
+cutadapt \
+    -g AAACTYAAAKGAATTGRCGG \
+    -o cutadapt/J8231_S85_L001_R1_001.fastq.gz \
+    raw_reads/J8231_S85_L001_R1_001.fastq.gz \
+    --info-file J8231_S85_L001_R1_001.fastq.gz_cutadapt.txt
 
 or 
 
-cutadapt -g AAACTYAAAKGAATTGRCGG -G ACGGGCGGTGWGTRC -o cutadapt/J8231_S85_L001_R1_001.fastq.gz -p cutadapt/J8231_S85_L001_R2_001.fastq.gz raw_reads/J8231_S85_L001_R1_001.fastq.gz raw_reads/J8231_S85_L001_R2_001.fastq.gz --info-file cutadapt/cutadapt_info.txt
+cutadapt \
+    -g AAACTYAAAKGAATTGRCGG \
+    -G ACGGGCGGTGWGTRC \
+    -o cutadapt/J8231_S85_L001_R1_001.fastq.gz \
+    -p cutadapt/J8231_S85_L001_R2_001.fastq.gz \
+    raw_reads/J8231_S85_L001_R1_001.fastq.gz \
+    raw_reads/J8231_S85_L001_R2_001.fastq.gz \
+    --info-file cutadapt/cutadapt_info.txt
 ```
 
 ## Trimmomatic
