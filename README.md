@@ -15,6 +15,25 @@ multiqc .
 ## Cutadapt
 ```
 cutadapt -g AAACTYAAAKGAATTGRCGG -o cutadapt/J8231_S85_L001_R1_001.fastq.gz raw_reads/J8231_S85_L001_R1_001.fastq.gz --info-file J8231_S85_L001_R1_001.fastq.gz_cutadapt.txt
+
+or 
+
+cutadapt -g AAACTYAAAKGAATTGRCGG -G ACGGGCGGTGWGTRC -o cutadapt/J8231_S85_L001_R1_001.fastq.gz -p cutadapt/J8231_S85_L001_R2_001.fastq.gz raw_reads/J8231_S85_L001_R1_001.fastq.gz raw_reads/J8231_S85_L001_R2_001.fastq.gz --info-file cutadapt/cutadapt_info.txt
+```
+
+## Trimmomatic
+```
+trimmomatic PE \
+    -phred33 \
+    -threads 12 \
+    -trimlog paired_trimmed.log
+    input_forward.fq.gz \
+    input_reverse.fq.gz \
+    output_forward_paired.fq.gz \
+    output_forward_unpaired.fq.gz \
+    output_reverse_paired.fq.gz \
+    output_reverse_unpaired.fq.gz \
+    SLIDINGWINDOW:4:20 MINLEN:250
 ```
 
 # QIIME2 for feature (OTU) table & taxonomy
