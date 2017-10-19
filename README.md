@@ -228,3 +228,25 @@ qiime metadata tabulate \
 ```
 qiime tools export taxonomy.qzv --output-dir test-output-taxonomy
 ```
+
+## Sending Email
+```
+sudo apt-get install ssmtp
+```
+sSMTP can be configured from one text file. Open /etc/ssmtp/ssmtp.conf in a text editor:
+```
+sudo nano /etc/ssmtp/ssmtp.conf
+```
+The configuration file is very short and well commented by default. Here’s the options I use for sending mail through Gmail:
+```
+root=myemailaddress@gmail.com
+mailhub=smtp.gmail.com:587
+AuthUser=mygmailusername
+AuthPass=mypassword
+UseSTARTTLS=YES
+```
+
+Send email by following command:
+```
+echo "This is the message body" | EMAIL="Shihab Hasan <shihab.hasan@qimrberghofer.edu.au>" mutt -a "task_test.py" -s "subject of message" -- pharm.shihab@gmail.com
+```
