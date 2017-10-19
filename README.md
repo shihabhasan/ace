@@ -232,6 +232,7 @@ qiime tools export taxonomy.qzv --output-dir test-output-taxonomy
 ## Sending Email
 ```
 sudo apt-get install ssmtp
+sudo apt-get install mutt
 ```
 sSMTP can be configured from one text file. Open /etc/ssmtp/ssmtp.conf in a text editor:
 ```
