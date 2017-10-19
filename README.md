@@ -249,5 +249,8 @@ UseSTARTTLS=YES
 
 Send email by following command:
 ```
-echo "This is the message body" | EMAIL="Shihab Hasan <shihab.hasan@qimrberghofer.edu.au>" mutt -a "task_test.py" -s "subject of message" -- pharm.shihab@gmail.com
+echo "This is the message body" |  \
+    mutt -a "attach1.pdf" -a "attach2.pdf" -a "attach3.pdf" \
+    -s "subject of message" \
+    -- pharm.shihab@gmail.com
 ```
